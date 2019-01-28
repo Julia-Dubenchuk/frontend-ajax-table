@@ -36,20 +36,20 @@ function compareName (first, second) {
 	return 0;
 }
 
+function isActive (element) {
+	return element.isActive;
+}
+
+function isLongLengthSurname (element) {
+	return element.name.last.length > 5;
+}
+
 function filterDataActive (arrayData, typeTable) {
-	arrayData.filter(element => {
-		if (element.isActive) {
-			getTableTemplate(element, typeTable);
-		}
-	});
+	arrayData.filter(isActive).forEach(element => getTableTemplate(element, typeTable));
 }
 
 function filterDataSurname (arrayData, typeTable) {
-	arrayData.filter(element => {
-		if (element.name.last.length > 5) {
-			getTableTemplate(element, typeTable);
-		}
-	});
+	arrayData.filter(isLongLengthSurname).forEach(element => getTableTemplate(element, typeTable));
 }
 
 function sortAge (arrayData, typeTable) {
