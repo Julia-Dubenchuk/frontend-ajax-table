@@ -4,7 +4,6 @@ import { filterData } from './filter-data';
 import { sortData } from './sort-data';
 import { isDataActive } from './data-active';
 import { isDataLongSurname } from './data-long-surname';
-import { getData } from './get-data';
 import { compareAge } from './compare-age';
 import { compareName } from './compare-name';
 
@@ -17,11 +16,11 @@ const tableFilterSurname = document.querySelector('.data-surname');
 
 axios.get(URL)
 	.then(({ data }) => {
-		filterData(data, tableData, getData);
+		filterData(data, tableData);
 		filterData(data, tableFilterActive, isDataActive);
-		filterData(data, tableSortAge, isDataLongSurname);
-		sortData(data,  tableSortName, compareAge);
-		sortData(data, tableFilterSurname, compareName);
+		filterData(data, tableFilterSurname, isDataLongSurname);
+		sortData(data, tableSortAge, compareAge);
+		sortData(data, tableSortName, compareName);
 		return;
 	})
 	.catch(error => new Error(`Network Error ${error}`));
