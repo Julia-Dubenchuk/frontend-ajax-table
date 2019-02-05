@@ -15,9 +15,9 @@ axios.get(URL)
 	.then(response => {
 		filterData(response.data, TABLE_DATA, getData);
 		filterData(response.data, TABLE_FILTER_ACTIVE, isDataActive);
-		filterData(response.data, TABLE_SORT_AGE, isDataLongSurname);
-		sortData(response.data, TABLE_SORT_NAME, compareAge);
-		sortData(response.data, TABLE_FILTER_SURNAME, compareName);
+		filterData(response.data, TABLE_FILTER_SURNAME, isDataLongSurname);
+		sortData(response.data, TABLE_SORT_AGE, compareAge);
+		sortData(response.data, TABLE_SORT_NAME, compareName);
 		return;
 	})
 	.catch(error => new Error(`Network Error ${error}`));
