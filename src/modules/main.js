@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { filterData } from './filter';
-import { sortData } from './sort';
+import { filterData } from './filter-data';
+import { sortData } from './sort-data';
 import { isDataActive } from './data-active';
 import { isDataLongSurname } from './data-long-surname';
 import { getData } from './get-data';
