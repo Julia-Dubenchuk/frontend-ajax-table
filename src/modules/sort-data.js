@@ -1,10 +1,6 @@
-import { getTableTemplate } from './get-table-template';
-
-export function sortData (arrayData, typeTable, compareFunc) {
+export function sortData (arrayData, compareFunc) {
 	const arrayDataCopy = arrayData.slice();
 
-	arrayDataCopy.sort(compareFunc);
-	arrayDataCopy.forEach(element => {
-		getTableTemplate(element, typeTable);
-	});
+	return arrayDataCopy.sort(compareFunc);
+
 }
