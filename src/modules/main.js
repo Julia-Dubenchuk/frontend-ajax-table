@@ -44,12 +44,8 @@ function isLongLengthSurname (element) {
 	return element.name.last.length > 5;
 }
 
-function filterDataActive (arrayData, typeTable) {
-	arrayData.filter(isActive).forEach(element => getTableTemplate(element, typeTable));
-}
-
-function filterDataSurname (arrayData, typeTable) {
-	arrayData.filter(isLongLengthSurname).forEach(element => getTableTemplate(element, typeTable));
+function filterData (arrayData, typeTable, filterCallback) {
+	arrayData.filter(filterCallback).forEach(element => getTableTemplate(element, typeTable));
 }
 
 function sortAge (arrayData, typeTable) {
@@ -67,8 +63,8 @@ function getAllData (arrayData, typeTable) {
 axios.get(URL)
 	.then(response => {
 		getAllData(response.data, tableAll);
-		filterDataActive(response.data, tableActive);
-		filterDataSurname(response.data, tableSurname);
+		filterData(response.data, tableActive, isActive);
+		filterData(response.data, tableSurname, isLongLengthSurname);
 		sortAge(response.data, tableAge);
 		sortName(response.data, tableName);
 		return;
