@@ -1,4 +1,4 @@
-export function sortData (arrayData, compareFunc) {
+export function sort (arrayData, compareFunc) {
 	const arrayDataCopy = arrayData.slice();
 
 	return arrayDataCopy.sort(compareFunc);

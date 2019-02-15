@@ -1,4 +1,4 @@
-export function getTableTemplate (element, typeTable) {
+export function getTableTemplate (element) {
 	const tableTemplate = `<tr>
 			<td><img src="${element.picture}" alt="Пользователь ${element.name.first} ${element.name.last} "/></td>
 			<td>${element.name.first} ${element.name.last}</td>
@@ -13,5 +13,5 @@ export function getTableTemplate (element, typeTable) {
 			<td>${element.address}</td>
 		</tr>`;
 
-	typeTable.insertAdjacentHTML('beforeEnd', tableTemplate);
+	return tableTemplate;
 }
