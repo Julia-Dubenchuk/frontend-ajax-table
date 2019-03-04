@@ -1,10 +1,10 @@
-import { getUsers } from './getUsers';
-import { isActive } from './isActive';
-import { isLongSurname } from './isLongSurname';
-import { compareAge } from './compareAge';
-import { compareName } from './compareName';
-import { toRawHtml } from './toRawHtml';
-import { renderTo } from './renderTo';
+import { getUsers } from './get-users';
+import { isActive } from './is-active';
+import { isLongSurname } from './is-long-surname';
+import { compareAge } from './compare-age';
+import { compareName } from './compare-name';
+import { toRawHtml } from './to-raw-html';
+import { renderTo } from './render-to';
 
 const usersTable = document.querySelector('.data-all');
 const activeUsersTable = document.querySelector('.data-active');
@@ -15,29 +15,29 @@ const longSurnameUsersTable = document.querySelector('.data-surname');
 getUsers().then(function (users) {
 	users
 		.map(toRawHtml)
-		.forEach(el => renderTo(el, usersTable));
+		.forEach(renderTo(usersTable));
 
 	users
 		.filter(isActive)
 		.map(toRawHtml)
-		.forEach(el => renderTo(el, activeUsersTable));
+		.forEach(renderTo(activeUsersTable));
 
 	users
 		.concat()
 		.sort(compareAge)
 		.map(toRawHtml)
-		.forEach(el => renderTo(el, ageSortedUsersTable));
+		.forEach(renderTo(ageSortedUsersTable));
 
 	users
 		.concat()
 		.sort(compareName)
 		.map(toRawHtml)
-		.forEach(el => renderTo(el, nameSortedUsersTable));
+		.forEach(renderTo(nameSortedUsersTable));
 
 	users
 		.filter(isLongSurname)
 		.map(toRawHtml)
-		.forEach(el => renderTo(el, longSurnameUsersTable));
+		.forEach(renderTo(longSurnameUsersTable));
 
 	return users;
 }).catch(console.error);
