@@ -1,19 +1,43 @@
-import { requestServer } from './request-server';
-import { filter } from './filter';
-import { sort } from './sort';
-import { isDataActive } from './data-active';
-import { isDataLongSurname } from './data-long-surname';
-import { compareAge } from './compare-age';
-import { compareName } from './compare-name';
+import { getUsers } from './getUsers';
+import { isActive } from './isActive';
+import { isLongSurname } from './isLongSurname';
+import { compareAge } from './compareAge';
+import { compareName } from './compareName';
+import { toRawHtml } from './toRawHtml';
+import { renderTo } from './renderTo';
 
-const tableData = document.querySelector('.data-all');
-const tableFilterActive = document.querySelector('.data-active');
-const tableSortAge = document.querySelector('.data-age');
-const tableSortName = document.querySelector('.data-name');
-const tableFilterSurname = document.querySelector('.data-surname');
+const usersTable = document.querySelector('.data-all');
+const activeUsersTable = document.querySelector('.data-active');
+const ageSortedUsersTable = document.querySelector('.data-age');
+const nameSortedUsersTable = document.querySelector('.data-name');
+const longSurnameUsersTable = document.querySelector('.data-surname');
 
-requestServer(tableData);
-requestServer(tableFilterActive, filter, isDataActive);
-requestServer(tableFilterSurname, filter, isDataLongSurname);
-requestServer(tableSortAge, sort, compareAge);
-requestServer(tableSortName, sort, compareName);
+getUsers().then(function (users) {
+	users
+		.map(toRawHtml)
+		.forEach(el => renderTo(el, usersTable));
+
+	users
+		.filter(isActive)
+		.map(toRawHtml)
+		.forEach(el => renderTo(el, activeUsersTable));
+
+	users
+		.concat()
+		.sort(compareAge)
+		.map(toRawHtml)
+		.forEach(el => renderTo(el, ageSortedUsersTable));
+
+	users
+		.concat()
+		.sort(compareName)
+		.map(toRawHtml)
+		.forEach(el => renderTo(el, nameSortedUsersTable));
+
+	users
+		.filter(isLongSurname)
+		.map(toRawHtml)
+		.forEach(el => renderTo(el, longSurnameUsersTable));
+
+	return users;
+}).catch(console.error);

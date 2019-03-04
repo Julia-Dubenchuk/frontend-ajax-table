@@ -1,4 +1,4 @@
-export function getTableTemplate (element) {
+export function toRawHtml (element) {
 	const tableTemplate = `<tr>
 			<td><img src="${element.picture}" alt="Пользователь ${element.name.first} ${element.name.last} "/></td>
 			<td>${element.name.first} ${element.name.last}</td>
