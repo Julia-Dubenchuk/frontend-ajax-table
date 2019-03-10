@@ -3,7 +3,7 @@ import { isActive } from './is-active';
 import { isLongSurname } from './is-long-surname';
 import { compareAge } from './compare-age';
 import { compareName } from './compare-name';
-import { toRawHtml } from './to-raw-html';
+import { toRowHtml } from './to-row-html';
 import { renderTo } from './render-to';
 
 const usersTable = document.querySelector('.data-all');
@@ -14,29 +14,29 @@ const longSurnameUsersTable = document.querySelector('.data-surname');
 
 getUsers().then(function (users) {
 	users
-		.map(toRawHtml)
+		.map(toRowHtml)
 		.forEach(renderTo(usersTable));
 
 	users
 		.filter(isActive)
-		.map(toRawHtml)
+		.map(toRowHtml)
 		.forEach(renderTo(activeUsersTable));
 
 	users
 		.concat()
 		.sort(compareAge)
-		.map(toRawHtml)
+		.map(toRowHtml)
 		.forEach(renderTo(ageSortedUsersTable));
 
 	users
 		.concat()
 		.sort(compareName)
-		.map(toRawHtml)
+		.map(toRowHtml)
 		.forEach(renderTo(nameSortedUsersTable));
 
 	users
 		.filter(isLongSurname)
-		.map(toRawHtml)
+		.map(toRowHtml)
 		.forEach(renderTo(longSurnameUsersTable));
 
 	return users;
